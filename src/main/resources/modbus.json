@@ -1,0 +1,70 @@
+{
+  "connection": "tcp",
+  "slave": 1,
+  "tcpSettings": {
+    "node": "localhost",
+    "port": 5002,
+    "keepalive": true
+  },
+  "objects": {
+    "26241": [
+      {
+        "26251": {
+          "type": "holding-register",
+          "startAddress": 0,
+          "pollMillis": 1000
+        },
+        "26252": {
+          "type": "input-register",
+          "startAddress": 0
+        },
+        "26253": {
+          "type": "coil",
+          "startAddress": 0
+        },
+        "26254": {
+          "type": "discrete-input",
+          "startAddress": 0
+        },
+        "26255": {
+          "type": "holding-register",
+          "startAddress": 0,
+          "quantity": 10
+        },
+        "26256": {
+          "type": "input-register",
+          "startAddress": 0,
+          "quantity": 4
+        },
+        "26257": {
+          "type": "coil",
+          "startAddress": 0,
+          "quantity": 4
+        },
+        "26258": {
+          "type": "discrete-input",
+          "startAddress": 0,
+          "quantity": 4
+        }
+      },
+      {
+        "26251": {
+          "type": "holding-register",
+          "startAddress": 1
+        },
+        "26253": {
+          "type": "coil",
+          "startAddress": 1
+        }
+      }
+    ],
+    "3303": [
+      {
+        "5700": {
+          "type": "holding-register",
+          "startAddress": 0
+        }
+      }
+    ]
+  }
+}
