@@ -2,6 +2,7 @@ package io.zeelos.leshan.client.modbus;
 
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import io.zeelos.leshan.client.modbus.utils.Utils;
+import org.eclipse.leshan.client.request.ServerIdentity;
 import org.eclipse.leshan.client.resource.BaseInstanceEnabler;
 import org.eclipse.leshan.core.model.ResourceModel;
 import org.eclipse.leshan.core.node.LwM2mResource;
@@ -26,6 +27,9 @@ public class ModbusSensor extends BaseInstanceEnabler {
     private int slave;
     private ModbusMaster master;
 
+    public ModbusSensor() {
+    }
+
     public ModbusSensor(int slave, ModbusMaster master, Map<String, ModbusConfig.Resource> config) {
         this.config = config;
         this.slave = slave;
@@ -33,7 +37,7 @@ public class ModbusSensor extends BaseInstanceEnabler {
     }
 
     @Override
-    public ReadResponse read(int resourceid) {
+    public ReadResponse read(ServerIdentity identity, int resourceid) {
         log.debug("Read on Device Resource " + resourceid);
 
         ModbusConfig.Resource resource = config.get(String.valueOf(resourceid));
@@ -58,7 +62,7 @@ public class ModbusSensor extends BaseInstanceEnabler {
                 }
 
                 default:
-                    return super.read(resourceid);
+                    return super.read(identity, resourceid);
             }
         } catch (Exception e) {
             log.error("an error occurred during read()", e);
@@ -68,7 +72,7 @@ public class ModbusSensor extends BaseInstanceEnabler {
     }
 
     @Override
-    public WriteResponse write(int resourceid, LwM2mResource value) {
+    public WriteResponse write(ServerIdentity identity, int resourceid, LwM2mResource value) {
         log.debug("Write on Device Resource " + resourceid + " value " + value);
 
         ModbusConfig.Resource resource = config.get(String.valueOf(resourceid));
@@ -98,7 +102,7 @@ public class ModbusSensor extends BaseInstanceEnabler {
                     return WriteResponse.success();
 
                 default:
-                    return super.write(resourceid, value);
+                    return super.write(identity, resourceid, value);
             }
         } catch (Exception e) {
             log.error("error occured during write()", e);
